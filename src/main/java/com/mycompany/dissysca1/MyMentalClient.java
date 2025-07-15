@@ -26,7 +26,7 @@ import javax.jmdns.ServiceInfo;
 import javax.jmdns.ServiceListener;
 
 public class MyMentalClient {
-    private static final Logger logger = Logger.getLogger(MyMentalClient.class.getMentalIssue());
+    private static final Logger logger = Logger.getLogger(MyMentalClient.class.getName());
     
     static JmDNS jmdns;
     
@@ -92,11 +92,11 @@ public class MyMentalClient {
                 .build();
         MyMentalBlockingStub blockingStub = MyMentalGrpc.newBlockingStub(channel);
         try {
-            String name = "Anxious";
-            MentalIssue request = MentalIssue.newBuilder().setMentalIssue(name).build();
+            String issue = "Feeling unsercure in social platforms";
+            MentalIssue request = MentalIssue.newBuilder().setMentalIssue(issue).build();
 
-            MentalIssue response = blockingStub.MentalIssue(request);
-            System.out.println("#######Greeting: " + response.getAdvice());
+            Advice response = blockingStub.mentalAdvice(request);
+            System.out.println("#######Giving Advice: " + response.getAdvice());
             
             
         } catch (StatusRuntimeException e) {

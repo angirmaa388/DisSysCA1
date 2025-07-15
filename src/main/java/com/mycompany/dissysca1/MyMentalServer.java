@@ -23,7 +23,7 @@ import java.util.logging.Level;
 public class MyMentalServer extends MyMentalImplBase{
 
 
-    private static final Logger logger = Logger.getLogger(MyMentalServer.class.getMetalIssue());
+    private static final Logger logger = Logger.getLogger(MyMentalServer.class.getName());
 
     public static void main(String[] args) {
 
@@ -37,7 +37,7 @@ public class MyMentalServer extends MyMentalImplBase{
        logger.setLevel(Level.SEVERE);
         try {
             Server server = ServerBuilder.forPort(port)
-                    .addService(mymentalserver)
+                    .addService(myMentalserver)
                     .build()
                     .start();
             logger.info("Server started, listening on " + port);
@@ -59,11 +59,11 @@ public class MyMentalServer extends MyMentalImplBase{
 }
     
     @Override
-    public void MentalIssue(MentalIssue request, StreamObserver<Advice> responseObserver) {
+    public void mentalAdvice(MentalIssue request, StreamObserver<Advice> responseObserver) {
 
-        System.out.println("receiving hello request");
+        System.out.println("receiving issue request");
 
-        Advice reply = Advice.newBuilder().setAdvice("Hello " + request.getMentalIssue()).build();
+        Advice reply = Advice.newBuilder().setAdvice("Advice  " + request.getMentalIssue()).build();
 
         responseObserver.onNext(reply);
 
